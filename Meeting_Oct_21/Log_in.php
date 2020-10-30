@@ -1,0 +1,314 @@
+
+<?php
+	session_start();
+	//Double check if the user is already checked, logged in if so, bring the home. 
+	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+	{
+    	header("location: home.php");
+    	exit;
+	}	
+
+	$servername = "weblab.salemstate.edu";
+	$dbusername = "mytime";
+	$password = "mytime20";
+	$dbname = "mytime";
+
+	$conn = new mysqli($servername, $dbusername, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) 
+	{
+		echo("database broken or not working");
+  		die("Connection failed: " . $conn->connect_error);
+	} 
+	
+	
+	if(isset($_POST['submit']) && !empty($_POST['username']) 
+               && !empty($_POST['password']))
+	{
+		$username = mysqli_real_escape_string($conn,$_POST['username']);
+      	$password = mysqli_real_escape_string($conn,$_POST['password']);
+		$sql = "SELECT * FROM ACCOUNT WHERE User_ID = '$username'";
+	  	$result = mysqli_query($conn,$sql);
+		
+		//The number of rows should be 1 if the username exists.
+      	$counter = mysqli_num_rows($result);
+		if($counter == 1)
+		{
+			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+			$hash = "${row['PASSWORD']}";
+			if(password_verify($password, $hash))
+			{ 
+				$_SESSION['user_name'] = $username;
+				print($_SESSION['user_name']);
+				$_SESSION['loggedin'] = true;
+				header("location: home.php");
+    		} 
+			else
+				echo "<script>alert('The username or password is incorrect.');</script>"; 
+		}
+		else 
+         	echo "<script>alert('The username of password is incorrect.');</script>"; 
+   
+	}
+	
+	?>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Log In</title>
+</head>
+<style>
+	
+	body {
+		margin: 0;
+	}
+	/* CSS code for the menu bar. */
+	.menu {
+		width: 100%;
+		background:#142b47;
+		overflow: auto;
+			
+	}
+	
+	.menu ul {
+		margin: 0;
+		paddding: 0;
+		list-style: none;
+		line-height: 60px;
+	}
+	
+	.menu li {
+		float: left;
+	}
+	
+	.menu ul li a{
+		background: 142b47;
+		text-decoration: none;
+		width: 170px;
+		display: block;
+		text-align: center;
+		color: #F2F2F2;
+		font-size: 18px;
+		font-family: sans-serif;
+		letter-spacing: 0.5px;
+	}
+	
+	.menu li a:hover {
+		color:#fff;
+		opacity:0.5;
+		font-size:19px;
+	}
+	
+	.search-bar {
+		margin-top: 15px;
+		float: right;
+		margin-right: 100px;
+		
+	}
+	
+	.search-bar input[type=text] {
+		padding: 7px;
+		border: none;
+		font-size: 16px;
+		font-family: sans-serif;
+		height: 15px;
+		padding-top: 10px;
+		border-radius: 4px;
+		width: 300px;
+	}
+	
+	button {
+		float: right;
+		background: orange;
+		color:white;
+		border-radius 0 5px 5px 0;
+		cursor: pointer;
+		position: relative;
+		padding: 7px;
+		font-family: sans-serif;
+		border:none;
+		font-size: 16px;
+		padding-top: 15px;
+	}
+	
+	searchlabel {
+		float: left;
+		font-family: sans-serif;
+		color: white;
+		padding-top: 10px;
+	}
+	/* CSS code for the navigation bar ends here. */
+	
+	/*CSS code for the log in form begins here. */
+	/* Attributes for the form itself*/
+	#formwrapper{
+		padding-top: 100px;
+		width: 300px;
+		height: auto;
+		background-color: 5e91f8;
+		border: none;
+		margin: 0 auto;
+		width:25%;
+		padding-top: 10%;
+	}	
+		
+	/* Attributes for the form itself*/
+	form{ 
+		width: 300px;
+		height: auto;
+		background-color: transparent;
+		border: none;
+	}
+		
+	/* Attributes for the form itself*/
+	fieldset {
+		background-color: white;
+		border: none;
+		padding-bottom: 10px;
+		text-align: center;
+		border-radius: 12px;
+	}
+		
+	/* Attributes for the header in the form.*/
+	h1{
+		font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
+		font-size: 16px;
+		color: black;
+	}
+		
+	/* Attributes for the header on the top of the page.*/
+	h2{
+		color: blue;
+    	text-align: center;
+    	font-family: 'Crimson Text', serif;
+	}
+		
+	/*Attributes for the labels in the form*/
+	label {
+		width:250px;
+		display: block;
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+		font-size:15px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		padding-top: 25px;
+		color: black;
+	}
+		
+	input{
+		width: auto;
+		font-size: 18px;
+		border: thin solid #6CF;
+		border-color: gray;
+		margin-bottom: 10px;
+		margin-left:auto;
+		margin-right: auto;
+		width: 300px;
+		border-radius: 4px;
+		height: 27px;
+	}
+		
+	textarea {
+		width: 250px;
+		border: thin solid;
+		border-color: gray;
+		margin-bottom: 10px;
+		display: block;
+		margin-left:auto;
+		margin-right: auto;
+	}
+		
+	/* Attributes for the submit button. */
+	.btn {
+		width: 300px;
+		height: 35px;
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+		color: #FFF;
+		font-weight: bold;
+		background-color: dodgerblue;
+			/* #6CF*/
+			/*background-color: transparent;*/
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		padding-top: 10px;
+		cursor: pointer;
+		border-color: #5e91f8;
+	}
+	/* Dimensions for the shape of the button.*/
+	.buttonshape {
+		border-radius: 12px;
+	}
+	
+	.loginLabel {
+		width:250px;
+		display: block;
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+		font-size: 14px;
+		font-color: green;/*
+		margin-top: 5px;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		margin-left: 0px;*/
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		padding-top: 10px;
+	}
+	
+	/*CSS for the log in form ends. */
+	
+	/* CSS for the links at the bottom of the page. */
+		#bottom {
+			align-content: center;
+			
+		}
+		.bottom {
+			float: center;
+			text-align: center;
+			color: whitesmoke;
+		}
+	
+</style>
+<body
+	style="background-color: #5e91f8">
+	<nav class ="menu">
+		<ul>
+			<li><a href ="http://weblab.salemstate.edu/~mytime/Waiting_Time/home.html"> Home</a></li>
+			<li><a href ="http://weblab.salemstate.edu/~mytime/Waiting_Time/Create_Account.php"> Create An Account</a></li>
+		</ul>
+		<div class ="search-bar">
+			<searchlabel> Find A Location:</searchlabel>
+			<input type ="text" placeholder ="Search...">
+		</div>
+	</nav>
+	
+	<div id="formwrapper">
+	<form action="" method="post"> 
+		<fieldset>
+		<h1>Welcome back!</h1>
+		<label for="username">Username*</label>
+		<input name="username" type="text" size="20" maxlength="20" required>
+		<label for="password">Password*</label>
+		<input name="password" type="password" size="20" maxlength="32" id="password" autocomplete="none" required>
+		<label for="submit"></label>
+		<input class="btn buttonshape" name="submit" type="submit">
+		<label class="loginLabel">Don't have an account? Create one here! </label>
+		<label class="loginLabel">Forgot Password</label>
+	  </fieldset>
+	</form>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br>
+	<br><br><br><br><br><br>
+	<hr style="width:90%; text-align:center; color: whitesmoke"> <br>
+	<div id = "bottom">
+		<p class="bottom">Contact Us</p>
+		<p class="bottom">About Us</p>
+		<p class="bottom">How It Works</p>
+		<p class="bottom">My Wait Time -- 352 Lafayette St, Salem, MA 01970</p>
+	</div>
+	</body>
+</html>
