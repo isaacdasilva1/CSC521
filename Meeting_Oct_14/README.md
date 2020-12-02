@@ -4,6 +4,7 @@ During this meeting, the design of the HTML documents were looked at and discuss
 
 ## Assigned Tasks For Next Meeting
 - Link all navigation bar buttons to the designated webpages (HTML)
+_ Create a session when the user logs in. Make this session reflect on the navigation bar whenever the user logs in.
 ## Problems Occurred Prior To Meeting. 
 
 Issue regarding the javascript code not executing the password checker correctly and not displaying the status bar. 
