@@ -1,0 +1,481 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Create An Account</title>
+</head>
+<style>
+		/* Attributes for the form itself*/
+		#formwrapper{
+			padding-top: 100px;
+			width: 300px;
+			height: auto;
+			background-color: 5e91f8;
+			border: none;
+			margin: 0 auto;
+			width:50%;
+		}	
+		
+		/* Attributes for the form itself*/
+		form{ 
+			width: 300px;
+			height: auto;
+			background-color: white;
+			border: none;
+		}
+		
+		/* Attributes for the form itself*/
+		fieldset {
+			background-color: white;
+			border: none;
+			padding-bottom: 10px;
+			text-align: center;
+			border-radius: 12px;
+		}
+		
+		/* Attributes for the header in the form.*/
+		h1{
+			font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
+			font-size: 16px;
+			color: black;
+		}
+		
+		/* Attributes for the header on the top of the page.*/
+		h2{
+			color: blue;
+    		text-align: center;
+    		font-family: 'Crimson Text', serif;
+		}
+		
+		/*Attributes for the labels in the form*/
+		label {
+			width:250px;
+			display: block;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			font-size:15px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			padding-top: 25px;
+			color: black;
+		}
+		
+		input{
+			width: auto;
+			font-size: 18px;
+			border: thin solid #6CF;
+			border-color: gray;
+			margin-bottom: 10px;
+			margin-left:auto;
+			margin-right: auto;
+			width: 300px;
+			border-radius: 4px;
+			height: 27px;
+		}
+		
+		textarea {
+			width: 250px;
+			border: thin solid;
+			border-color: gray;
+			margin-bottom: 10px;
+			display: block;
+			margin-left:auto;
+			margin-right: auto;
+		}
+		
+		/* Attributes for the submit button. */
+		.btn {
+			width: 300px;
+			height: 35px;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			color: #FFF;
+			font-weight: bold;
+			background-color: dodgerblue;
+			/* #6CF*/
+			/*background-color: transparent;*/
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			padding-top: 10px;
+			cursor: pointer;
+			border-color: #5e91f8;
+		}
+		/* Dimensions for the shape of the button.*/
+		.buttonshape {
+			border-radius: 12px;
+		}
+		.loginLabel {
+			width:250px;
+			display: block;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			font-size: 14px;
+			font-color: green;/*
+			margin-top: 5px;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			margin-left: 0px;*/
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			padding-top: 10px;
+		}
+		/* Shown when the user clicks on the password field */
+		#password_status 
+		{
+			display:none;
+			background: white;
+			color: #000;
+			font-family: Arial, sans-serif;		
+			width: 400px;
+			length: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			border-color: black;
+		}
+
+		#password_status p {
+		  	font-size: 12px;
+			text-align: left;
+			padding-left: 150px;
+		}
+
+		/* Green text */
+		.met_requirement {
+		  	color: green;
+		}
+
+		.met_requirement:before {
+		  	left: -5px;
+		  	content: "✓  ";
+		}
+
+		/* Red text */
+		.did_not_meet_requirement {
+		  	color: red;
+		}
+
+		.did_not_meet_requirement:before {
+		  	left: -5px;
+		  	content: "✘  ";
+		}
+	
+		/* When the user inputs their password; and gets very weak. */
+		.very_weak {
+			color: darkred;
+		}
+		/* When the user inputs their password; and gets weak. */
+		.weak {
+			color: red;
+		}
+		/* When the user inputs their password; and gets moderate. */
+		.moderate {
+			color: gray;
+		}
+		/* When the user inputs their password; and gets secure. */
+		.secure {
+			color: lightgreen;
+		}
+		/* When the user inputs their password; and gets very secure. */
+		.very_secure {
+			color: darkgreen;
+		}
+		/* Extra links at the bottom of the page. */
+		#bottom {
+			align-content: center;
+			
+		}
+		.bottom {
+			float: center;
+			text-align: center;
+			color: whitesmoke;
+		}
+	body{
+		background: skyblue;
+		margin: 0;
+	}
+	
+	.menu {
+		width: 100%;
+		background:#142b47;
+		overflow: auto;
+			
+	}
+	
+	.menu ul {
+		margin: 0;
+		paddding: 0;
+		list-style: none;
+		line-height: 60px;
+	}
+	
+	.menu li {
+		float: left;
+	}
+	
+	.menu ul li a{
+		background: 142b47;
+		text-decoration: none;
+		width: 100px;
+		display: block;
+		text-align: center;
+		color: #F2F2F2;
+		font-size: 18px;
+		font-family: sans-serif;
+		letter-spacing: 0.5px;
+	}
+	
+	.menu li a:hover {
+		color:#fff;
+		opacity:0.5;
+		font-size:19px;
+	}
+	
+	.search-bar {
+		margin-top: 15px;
+		float: right;
+		margin-right: 40px;
+		
+	}
+	
+	.search-bar input[type=text] {
+		padding: 7px;
+		border: none;
+		font-size: 16px;
+		font-family: sans-serif;
+		height: 15px;
+		padding-top: 15px;
+	}
+	
+	searchlabel {
+		float: left;
+		font-family: sans-serif;
+		color: white;
+		padding-top: 10px;
+	}
+		
+	</style>
+<body style="background-color: #5e91f8">
+	<nav class ="menu">
+		<ul>
+			<li><a href ="http://weblab.salemstate.edu/~mytime/Waiting_Time/home.html"> Home</a></li>
+			<li><a href ="http://weblab.salemstate.edu/~mytime/Waiting_Time/Log_in.html"> Log in</a></li>
+		</ul>
+		<div class ="search-bar">
+			<searchlabel> Find A Location:</searchlabel>
+			<input type ="text" placeholder ="Search...">
+		</div>
+	</nav>
+	
+	<div id="formwrapper">
+	<form action="file.php" method="post"> 
+		</form>
+		<fieldset>
+		<h1>By creating an account with us, you will be able to report the waiting times you encounter!</h1>
+		<label for="fname">First Name*</label>
+		<input name="fname" type="text" size="20" maxlength="100" required>
+		<label for="name">Last Name*</label>
+		<input name="lname" type="text" size="20" maxlength="100" required>
+		<label for="email">Email*</label>
+		<input name="email" type="text" size="20" maxlength="100" required>
+		<label for="phone">Phone</label>
+		<input name="phone" type="tel" size="10" maxlength="13">
+		<label for="dob">Date of Birth*</label>
+		<input name="dob" type="text" size="10" maxlength="10" placeholder="MM/DD/YYYY">
+		<label for="password">Password*</label>
+		<input name="password" type="password" size="20" maxlength="32" id="password" autocomplete="none" required>
+		<label for="strength">Password Strength</label>
+		<label id="strength_comment" ></label>
+		<progress max="100" value="0" id="strength" style="width: 250px"></progress>
+		<div id="password_status" class="buttonshape">
+		  <h3>Password Requirements:</h3>
+		  <p id="letters" class="did_not_meet_requirement">A <b>lowercase</b> letter</p>
+		  <p id="capital_letters" class="did_not_meet_requirement">An <b>unpercase</b> letter</p>
+		  <p id="numbers" class="did_not_meet_requirement">A <b>number</b></p>
+		  <p id="password_length" class="did_not_meet_requirement">Minimum <b>8 characters</b></p>
+		</div>
+		<label for="confirmpassword">Confirm password*</label>
+		<input name="confirmpassword" type="password" size="20" maxlength="32" required>
+		<label for="gender">Gender</label>
+		<select name="gender" id="gender">
+			<option value="male">Male </option>
+			<option value="female">Female </option>
+			<option value="other">Other </option>
+		</select>
+		<label for="username">Username*</label>
+		<input name="username" type="text" size="20" maxlength="20" required>
+		<label for="submit"></label>
+		<input class="btn buttonshape" name="sumbit" type="submit">
+		<label class="loginLabel">Already have an account? Log in here! </label>
+	  </fieldset>
+	</div>
+	<br><br><br><br><br><br>
+	<hr style="width:90%; text-align:center; color: whitesmoke"> <br>
+	<div id = "bottom">
+		<p class="bottom">Contact Us</p>
+		<p class="bottom">About Us</p>
+		<p class="bottom">How It Works</p>
+		<p class="bottom">352 Lafayette St, Salem, MA 01970</p>
+	</div>
+	
+	<?php
+?>
+</body>	
+
+
+	<script>
+		var password = document.getElementById("password");
+		var letter = document.getElementById("letters");
+		var capital = document.getElementById("capital_letters");
+		var number = document.getElementById("numbers");
+		var length = document.getElementById("password_length");
+
+		/* Status of the password check shows up once user clicks on the textfield. */
+		password.onfocus = function() {
+		  document.getElementById("password_status").style.display = "block";
+		}
+
+		/* Status of the password disappears when the user clicks outside of the box. */
+		password.onblur = function() {
+		  document.getElementById("password_status").style.display = "none";
+		}
+
+		// When the user starts to type something inside the password field
+		password.onkeyup = function() 
+		{
+			 // met_requirementate lowercase letters
+			 var lowerCaseLetters = /[a-z]/g;
+			 if(password.value.match(lowerCaseLetters)) 
+			 { 
+				letter.classList.remove("did_not_meet_requirement");
+				letter.classList.add("met_requirement");
+			 } 
+			 else 
+			 {
+				letter.classList.remove("met_requirement");
+				letter.classList.add("did_not_meet_requirement");
+			 }
+		
+		  // met_requirementate capital letters
+		  var upperCaseLetters = /[A-Z]/g;
+		  if(password.value.match(upperCaseLetters)) { 
+			capital.classList.remove("did_not_meet_requirement");
+			capital.classList.add("met_requirement");
+		  } else {
+			capital.classList.remove("met_requirement");
+			capital.classList.add("did_not_meet_requirement");
+		  }
+
+		  // met_requirementate numbers
+		  var numbers = /[0-9]/g;
+		  if(password.value.match(numbers)) 
+		  { 
+			number.classList.remove("did_not_meet_requirement");
+			number.classList.add("met_requirement");
+		  } else 
+		  {
+			number.classList.remove("met_requirement");
+			number.classList.add("did_not_meet_requirement");
+		  }
+
+		  // met_requirementate length
+		  if(password.value.length >= 8) 
+		  {
+			console.log(password.value.length);
+			length.classList.remove("did_not_meet_requirement");
+			length.classList.add("met_requirement");
+		  } else
+			{
+			length.classList.remove("met_requirement");
+			length.classList.add("did_not_meet_requirement");
+		  }
+		}
+
+	</script>
+	<script type="text/javascript">
+		/*Script responsible for checking password strength by user and the status bar. */
+		var password = document.getElementById("password")
+		password.addEventListener('keyup', function()
+		{
+			passWordChecker(password.value);
+		})
+		/* Function for testing the strength of the password. */
+		function passWordChecker(password)
+		{
+			var bar = document.getElementById("strength");
+			var comment = document.getElementById("strength_comment");
+			var strength = 0;
+			
+			//Check if the password has letters, numbers.
+			if(password.match(/[a-zA-Z0-9][a-zA-Z0-9]+/))
+			{
+				strength +=1;
+			}
+			if(password.match(/[~<>?]+/))
+			{
+				strength+=1;
+			}
+			if(password.match(/[!@$%^&*()]+/))
+			{
+				strength +=1;
+			}
+			if(password.length > 8)
+			{
+				strength +=1;	
+			}
+			switch(strength)
+			{
+				case 0:
+					bar.value = 0;
+					comment.innerHTML = "Very Weak";
+					comment.classList.add("very_weak");
+					//Remove all others
+					comment.classList.remove("weak");
+					comment.classList.remove("moderate");
+					comment.classList.remove("secure");
+					comment.classList.remove("very_secure");
+					break;
+				case 1:
+					bar.value = 40;
+					comment.innerHTML = "Weak";
+					comment.classList.add("weak");
+					//Remove all others
+					comment.classList.remove("very_weak");
+					comment.classList.remove("moderate");
+					comment.classList.remove("secure");
+					comment.classList.remove("very_secure");
+					break;
+				case 2:
+					bar.value = 60;
+					comment.innerHTML = "Moderate";
+					comment.classList.add("moderate");
+					//Remove all others
+					comment.classList.remove("very_weak");
+					comment.classList.remove("weak");
+					comment.classList.remove("secure");
+					comment.classList.remove("very_secure");
+					break;
+				case 3:
+					bar.value = 80;
+					comment.innerHTML = "Secure";
+					//Remove all others
+					comment.classList.remove("very_weak");
+					comment.classList.remove("moderate");
+					comment.classList.remove("weak");
+					comment.classList.remove("very_secure");
+					comment.classList.add("secure");
+					break;
+				case 4:
+					bar.value = 100;
+					comment.innerHTML = "Very Secure";
+					//Remove all others
+					comment.classList.remove("weak");
+					comment.classList.remove("moderate");
+					comment.classList.remove("secure");
+					comment.classList.remove("very_secure");
+					comment.classList.add("very_secure");
+					break;
+			}
+		}
+	</script>
+</html>
+
